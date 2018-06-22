@@ -5,30 +5,27 @@ import java.io.IOException;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import com.ias.assertions.Compare;
-import com.ias.base.DriverInstance;
-import com.ias.pom.LoginPage;
 import com.ias.pom.LoginPageFactory;
-import com.ias.utility.Utility;
+import com.ias.setup.Driver;
+import com.ias.util.Prop;
 
-public class LoginTest extends DriverInstance {
+public class LoginTest {
 
 	@Test
-	public void testingLoginFunctionality() throws IOException {
+	public static void testingLoginFunctionality() throws IOException {
 
+		String browserType= Prop.fetchPropertyValue("browser").toString();
 		/*
 		 * LoginPage login = new LoginPage(driver);
 		 * login.enterUserName(Utility.fetchPropertyValue("username"));
 		 * login.enterPassword(Utility.fetchPropertyValue("password"));
 		 * login.clickSignIn();
 		 */
+		WebDriver driver=Driver.getDriver(browserType);
+		driver.get(Prop.fetchTestData("applicationURL").toString());
 		LoginPageFactory loginPage = new LoginPageFactory(driver);
-		loginPage.login(Utility.fetchPropertyValue("username"),
-				Utility.fetchPropertyValue("password"));
-		Assert.assertTrue(
-				Compare.validatePageURL(driver,
-						Utility.fetchPropertyValue("successfulSignIn")),
-				"ERROR : not matching expected with actual");
+	    loginPage.login(Prop.fetchTestData("username"),Prop.fetchTestData("password"));
+				
+		Assert.assertEquals(driver.getCurrentUrl(),Prop.fetchTestData("successfulSignIn"));
 	}
 }

@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
-import com.ias.utility.Utility;
+import com.ias.util.Prop;
 
 public class LoginPage {
 

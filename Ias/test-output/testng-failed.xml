@@ -6,8 +6,6 @@
       <class name="com.ias.tests.LoginTest">
         <methods>
           <include name="testingLoginFunctionality"/>
-          <include name="closeDriverInstance"/>
-          <include name="initiateDriverInstance"/>
         </methods>
       </class> <!-- com.ias.tests.LoginTest -->
     </classes>
